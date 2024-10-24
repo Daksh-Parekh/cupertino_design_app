@@ -83,8 +83,20 @@ class _HomePageState extends State<HomePage> {
                 hR?.changeDate(d1!);
                 // context.read<HomeProvider>().changeDate(d1!);
               },
+              icon: Icon(Icons.calendar_month_rounded),
               label: Text("${hW?.date.day}/${hW?.date.month}/${hW?.date.year}"),
-            )
+            ),
+            TextButton.icon(
+              onPressed: () async {
+                TimeOfDay? timePick = await showTimePicker(
+                  context: context,
+                  initialTime: TimeOfDay.now(),
+                );
+                hR?.changeTime(timePick!);
+              },
+              icon: Icon(Icons.timer),
+              label: Text("${hW!.time.hour}:${hW?.time.minute}"),
+            ),
           ],
         ),
       ),

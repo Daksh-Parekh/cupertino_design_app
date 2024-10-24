@@ -32,6 +32,7 @@ class _HomeIosPageState extends State<HomeIosPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            //Cupertino Modal ACtion Button
             CupertinoButton.filled(
               child: Text("Modal ActionButton"),
               onPressed: () async {
@@ -62,6 +63,7 @@ class _HomeIosPageState extends State<HomeIosPage> {
                 );
               },
             ),
+            //Date Picker
             CupertinoButton(
               child: Text(
                   "${hWatch.date.day}/${hWatch.date.month}/${hWatch.date.year}"),
@@ -78,6 +80,58 @@ class _HomeIosPageState extends State<HomeIosPage> {
                           hRead.changeDate(value);
                         },
                       ),
+                    );
+                  },
+                );
+              },
+            ),
+            //Time Picker
+            CupertinoButton(
+              child: Text("${hWatch.time.hour}:${hWatch.time.minute}"),
+              onPressed: () {
+                showCupertinoModalPopup(
+                  context: context,
+                  builder: (context) {
+                    return Container(
+                      height: 200,
+                      color: CupertinoColors.white,
+                      child: CupertinoDatePicker(
+                        mode: CupertinoDatePickerMode.time,
+                        onDateTimeChanged: (value) {
+                          hRead.changeTime(
+                            TimeOfDay(hour: value.hour, minute: value.minute),
+                          );
+                        },
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
+            //Alert Dialog
+            CupertinoButton.filled(
+              child: Text("Alert Dialog"),
+              onPressed: () {
+                showCupertinoDialog(
+                  barrierDismissible: true,
+                  context: context,
+                  builder: (context) {
+                    return CupertinoAlertDialog(
+                      title: Text("Hello"),
+                      content: Text("Are you sure to exit"),
+                      actions: [
+                        CupertinoDialogAction(
+                          child: Text("YES"),
+                          isDefaultAction: true,
+                        ),
+                        CupertinoDialogAction(
+                          child: Text("NO"),
+                          isDestructiveAction: true,
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                        ),
+                      ],
                     );
                   },
                 );
