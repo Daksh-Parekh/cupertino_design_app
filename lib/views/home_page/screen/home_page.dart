@@ -11,8 +11,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  HomeProvider? hR, hW;
   @override
   Widget build(BuildContext context) {
+    hR = context.read<HomeProvider>();
+    hW = context.watch<HomeProvider>();
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
@@ -69,6 +72,19 @@ class _HomePageState extends State<HomePage> {
               },
               child: Text("Bottom Sheet"),
             ),
+            TextButton.icon(
+              onPressed: () async {
+                DateTime? d1 = await showDatePicker(
+                  context: context,
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime(2001),
+                  lastDate: DateTime(2030),
+                );
+                hR?.changeDate(d1!);
+                // context.read<HomeProvider>().changeDate(d1!);
+              },
+              label: Text("${hW?.date.day}/${hW?.date.month}/${hW?.date.year}"),
+            )
           ],
         ),
       ),

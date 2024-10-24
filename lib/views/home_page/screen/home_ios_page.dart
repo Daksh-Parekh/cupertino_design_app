@@ -11,8 +11,11 @@ class HomeIosPage extends StatefulWidget {
 }
 
 class _HomeIosPageState extends State<HomeIosPage> {
+  late HomeProvider hRead, hWatch;
   @override
   Widget build(BuildContext context) {
+    hRead = context.read<HomeProvider>();
+    hWatch = context.watch<HomeProvider>();
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
         middle: Text("iOS"),
@@ -26,35 +29,61 @@ class _HomeIosPageState extends State<HomeIosPage> {
         ),
       ),
       child: Center(
-        child: CupertinoButton.filled(
-          child: Text("Modal ActionButton"),
-          onPressed: () async {
-            return await showCupertinoModalPopup(
-              context: context,
-              builder: (context) {
-                return CupertinoActionSheet(
-                  title: Text("Hello"),
-                  message: Text("Are you sure to close."),
-                  actions: [
-                    CupertinoActionSheetAction(
-                      isDefaultAction: true,
-                      onPressed: () {},
-                      child: Text("YES"),
-                    ),
-                    CupertinoActionSheetAction(
-                      onPressed: () {},
-                      child: Text("NO"),
-                    ),
-                    CupertinoActionSheetAction(
-                      isDestructiveAction: true,
-                      onPressed: () {},
-                      child: Text("Cancel"),
-                    ),
-                  ],
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CupertinoButton.filled(
+              child: Text("Modal ActionButton"),
+              onPressed: () async {
+                return await showCupertinoModalPopup(
+                  context: context,
+                  builder: (context) {
+                    return CupertinoActionSheet(
+                      title: Text("Hello"),
+                      message: Text("Are you sure to close."),
+                      actions: [
+                        CupertinoActionSheetAction(
+                          isDefaultAction: true,
+                          onPressed: () {},
+                          child: Text("YES"),
+                        ),
+                        CupertinoActionSheetAction(
+                          onPressed: () {},
+                          child: Text("NO"),
+                        ),
+                        CupertinoActionSheetAction(
+                          isDestructiveAction: true,
+                          onPressed: () {},
+                          child: Text("Cancel"),
+                        ),
+                      ],
+                    );
+                  },
                 );
               },
-            );
-          },
+            ),
+            CupertinoButton(
+              child: Text(
+                  "${hWatch.date.day}/${hWatch.date.month}/${hWatch.date.year}"),
+              onPressed: () {
+                showCupertinoModalPopup(
+                  context: context,
+                  builder: (context) {
+                    return Container(
+                      height: 200,
+                      color: Colors.white,
+                      child: CupertinoDatePicker(
+                        mode: CupertinoDatePickerMode.date,
+                        onDateTimeChanged: (value) {
+                          hRead.changeDate(value);
+                        },
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
+          ],
         ),
       ),
     );
