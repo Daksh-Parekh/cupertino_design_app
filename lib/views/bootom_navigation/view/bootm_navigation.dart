@@ -1,4 +1,4 @@
-import 'package:cupertino_app_design/views/bootom_navigation/view/provider/bootom_provider.dart';
+import 'package:cupertino_app_design/views/bootom_navigation/provider/bootom_provider.dart';
 import 'package:cupertino_app_design/views/home_page/screen/home_page.dart';
 import 'package:cupertino_app_design/views/reels/view/reels.dart';
 import 'package:flutter/material.dart';

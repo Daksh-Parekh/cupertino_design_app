@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:cupertino_app_design/views/bootom_navigation/view/bootm_navigation.dart';
+import 'package:cupertino_app_design/views/bootom_navigation/view/tabbar_ios.dart';
 import 'package:cupertino_app_design/views/home_page/provider/home_provider.dart';
 import 'package:cupertino_app_design/views/home_page/screen/home_ios_page.dart';
 import 'package:cupertino_app_design/views/home_page/screen/home_page.dart';
@@ -10,7 +11,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'views/bootom_navigation/view/provider/bootom_provider.dart';
+import 'views/bootom_navigation/provider/bootom_provider.dart';
 
 void main() {
   if (Platform.isAndroid) {
@@ -49,7 +50,7 @@ class MyApp extends StatelessWidget {
               : CupertinoApp(
                   debugShowCheckedModeBanner: false,
                   routes: {
-                    '/': (context) => HomeIosPage(),
+                    '/': (context) => TabBarIos(),
                   },
                 );
         },

@@ -137,6 +137,20 @@ class _HomeIosPageState extends State<HomeIosPage> {
                 );
               },
             ),
+            SizedBox(
+              height: 20,
+            ),
+            //CupertinoSlider
+            Text("${hWatch.sliderIndex.toStringAsFixed(2)}"),
+            CupertinoSlider(
+              min: 0,
+              max: 10000,
+              // divisions: 10,
+              value: hWatch.sliderIndex,
+              onChanged: (value) {
+                hRead.changeSliderIndex(value);
+              },
+            ),
           ],
         ),
       ),
