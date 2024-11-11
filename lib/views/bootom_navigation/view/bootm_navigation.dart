@@ -1,6 +1,7 @@
 import 'package:cupertino_app_design/views/bootom_navigation/provider/bootom_provider.dart';
 import 'package:cupertino_app_design/views/home_page/screen/home_page.dart';
 import 'package:cupertino_app_design/views/reels/view/reels.dart';
+import 'package:cupertino_app_design/views/sliver/views/sliver.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,7 +15,7 @@ class BootmNavigation extends StatefulWidget {
 class _BootmNavigationState extends State<BootmNavigation> {
   late BootomProvider bottomR, bottomW;
 
-  List<Widget> screens = [HomePage(), ReelsPage()];
+  List<Widget> screens = [HomePage(), ReelsPage(), Sliver()];
   @override
   Widget build(BuildContext context) {
     bottomR = context.read<BootomProvider>();
@@ -43,6 +44,7 @@ class _BootmNavigationState extends State<BootmNavigation> {
         destinations: [
           NavigationDestination(icon: Icon(Icons.home), label: "Home"),
           NavigationDestination(icon: Icon(Icons.camera), label: "Camera"),
+          NavigationDestination(icon: Icon(Icons.slideshow), label: "Sliver"),
         ],
       ),
     );

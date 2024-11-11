@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class HomeProvider with ChangeNotifier {
-  bool isAndroid = false;
+  bool isAndroid = true;
   DateTime date = DateTime.now();
   TimeOfDay time = TimeOfDay.now();
   double sliderIndex = 0;
